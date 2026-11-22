@@ -2,13 +2,14 @@ import { describe, expect, it } from "vitest";
 import { DIRECTIONS, PAYMENT_METHODS, cryptoWallets, parseDirection } from "@/lib/content";
 
 describe("donation rules", () => {
-  it("offers only humanitarian directions: medicine and food", () => {
-    expect([...DIRECTIONS]).toEqual(["medicine", "food"]);
+  it("offers two directions: people hurt by the war and people who took part in the fighting", () => {
+    expect([...DIRECTIONS]).toEqual(["civilians", "fighters"]);
   });
 
   it("rejects any other direction from the address bar", () => {
     expect(parseDirection("weapons")).toBeUndefined();
-    expect(parseDirection("food")).toBe("food");
+    expect(parseDirection("drones")).toBeUndefined();
+    expect(parseDirection("fighters")).toBe("fighters");
   });
 
   it("accepts euro and crypto", () => {

@@ -19,7 +19,7 @@ export function PhotoFigure({ photo, className }: { photo: Photo; className?: st
           rel="noreferrer"
           className="mt-2 inline-block font-mono text-[0.65rem] text-muted-foreground underline-offset-2 hover:underline"
         >
-          Фото: {photo.author} · {photo.license}
+          Photo: {photo.author} · {photo.license}
         </a>
       </figcaption>
     </figure>

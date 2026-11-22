@@ -14,16 +14,16 @@ import {
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "ukraine.peace — помощь пострадавшим от войны" },
+      { title: "ukraine.peace — help for people hurt by the war" },
       {
         name: "description",
         content:
-          "Пожертвования на лекарства и продовольствие для пострадавших от войны в Украине и беженцев. Евро или криптовалюта.",
+          "Give money for medicine, food and medical care for people hurt by the war in Ukraine. Pay in euro or crypto.",
       },
-      { property: "og:title", content: "ukraine.peace — помощь пострадавшим от войны" },
+      { property: "og:title", content: "ukraine.peace — help for people hurt by the war" },
       {
         property: "og:description",
-        content: "Лекарства и еда для тех, кто остался среди руин. Сборы, новости, исследования.",
+        content: "Medicine, food and medical care for people hurt by the war. Fundraisers, news, research.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -52,18 +52,18 @@ function Index() {
         <div className="relative mx-auto w-full max-w-7xl px-6 pb-20">
           <p className="eyebrow animate-slow-fade">{hero?.place} · 2022</p>
           <h1 className="mt-6 max-w-4xl animate-slow-fade text-6xl leading-[0.98] text-bone md:text-8xl">
-            Здесь жили люди.
+            People lived here.
           </h1>
           <p className="mt-8 max-w-xl animate-slow-fade text-lg leading-relaxed text-foreground/80">
-            Кто-то из них до сих пор здесь — без воды, без лекарств, без дома. Мы собираем
-            помощь тем, кто остался, и тем, кому пришлось уйти.
+            Some of them are still here. No water, no medicine, no home. We collect help for
+            the people who stayed and for the people who had to leave.
           </p>
           <div className="mt-10 flex flex-wrap gap-4">
             <Link to="/donate" className="btn-ember">
-              Пожертвовать
+              Donate
             </Link>
             <Link to="/fundraisers" className="btn-ghost-bone">
-              Открытые сборы
+              Open fundraisers
             </Link>
           </div>
           {hero && (
@@ -73,7 +73,7 @@ function Index() {
               rel="noreferrer"
               className="mt-16 block font-mono text-[0.65rem] text-muted-foreground hover:underline"
             >
-              {hero.caption} Фото: {hero.author} · {hero.license}
+              {hero.caption} Photo: {hero.author} · {hero.license}
             </a>
           )}
         </div>
@@ -83,12 +83,12 @@ function Index() {
       <section className="mx-auto max-w-7xl px-6 py-28">
         <div className="grid gap-6 md:grid-cols-[1fr_2fr] md:items-end">
           <div>
-            <p className="eyebrow">Хроника</p>
-            <h2 className="mt-4 text-4xl text-bone md:text-5xl">То, что осталось</h2>
+            <p className="eyebrow">Chronicle</p>
+            <h2 className="mt-4 text-4xl text-bone md:text-5xl">What is left</h2>
           </div>
           <p className="max-w-xl text-muted-foreground md:justify-self-end">
-            Настоящие снимки независимых фотографов. Дома, школы, кинотеатр, университет. За
-            каждым окном — чья-то жизнь, которой больше нет.
+            Real photos by independent photographers. Homes, schools, a cinema, a university.
+            Behind every window there was a life. Now it is gone.
           </p>
         </div>
         <div className="mt-14 grid gap-3 md:grid-cols-6">
@@ -113,22 +113,24 @@ function Index() {
       {/* Directions */}
       <section className="border-y border-border bg-card">
         <div className="mx-auto max-w-7xl px-6 py-28">
-          <p className="eyebrow">Куда идут деньги</p>
+          <p className="eyebrow">Where the money goes</p>
           <h2 className="mt-4 max-w-2xl text-4xl text-bone md:text-5xl">
-            Вы выбираете, на что пойдёт ваш взнос
+            You choose what your money is for
           </h2>
           <div className="mt-14 grid gap-px bg-border md:grid-cols-2">
-            {DIRECTIONS.map((d, i) => (
-              <div key={d} className="flex flex-col bg-card p-10">
-                <span className="font-mono text-xs text-ember">0{i + 1}</span>
-                <h3 className="mt-6 text-3xl text-bone">{directionInfo[d].title}</h3>
-                <p className="mt-4 flex-1 leading-relaxed text-muted-foreground">
-                  {directionInfo[d].text}
-                </p>
-                <Link to="/donate" search={{ direction: d }} className="btn-ghost-bone mt-8 self-start">
-                  Помочь: {directionInfo[d].title.toLowerCase()}
-                </Link>
-              </div>
+            {DIRECTIONS.map((d) => (
+              <Link
+                key={d}
+                to="/donate"
+                search={{ direction: d }}
+                className="group flex flex-col bg-card p-10 transition-colors duration-500 hover:bg-accent"
+              >
+                <span className="eyebrow">{directionInfo[d].short}</span>
+                <h3 className="mt-5 text-3xl text-bone underline-offset-8 decoration-ember decoration-1 group-hover:underline">
+                  {directionInfo[d].title} <span className="text-ember transition-transform duration-500 inline-block group-hover:translate-x-1">→</span>
+                </h3>
+                <p className="mt-4 leading-relaxed text-muted-foreground">{directionInfo[d].text}</p>
+              </Link>
             ))}
           </div>
         </div>
@@ -138,11 +140,11 @@ function Index() {
       <section className="mx-auto max-w-7xl px-6 py-28">
         <div className="flex flex-wrap items-end justify-between gap-6">
           <div>
-            <p className="eyebrow">Сборы</p>
-            <h2 className="mt-4 text-4xl text-bone md:text-5xl">Сейчас не хватает</h2>
+            <p className="eyebrow">Fundraisers</p>
+            <h2 className="mt-4 text-4xl text-bone md:text-5xl">What people need now</h2>
           </div>
           <Link to="/fundraisers" className="eyebrow hover:text-bone">
-            Все сборы →
+            All fundraisers →
           </Link>
         </div>
         <div className="mt-14 grid gap-4 md:grid-cols-3">
@@ -157,11 +159,11 @@ function Index() {
         <div className="mx-auto max-w-7xl px-6 py-28">
           <div className="flex flex-wrap items-end justify-between gap-6">
             <div>
-              <p className="eyebrow">Последние новости</p>
-              <h2 className="mt-4 text-4xl text-bone md:text-5xl">С мест</h2>
+              <p className="eyebrow">Latest news</p>
+              <h2 className="mt-4 text-4xl text-bone md:text-5xl">From the ground</h2>
             </div>
             <Link to="/news" className="eyebrow hover:text-bone">
-              Все новости →
+              All news →
             </Link>
           </div>
           <div className="mt-12 divide-y divide-border border-y border-border">

@@ -1,9 +1,9 @@
 import { Link } from "@tanstack/react-router";
 
 const nav = [
-  { to: "/fundraisers", label: "Сборы" },
-  { to: "/research", label: "Исследования" },
-  { to: "/news", label: "Новости" },
+  { to: "/fundraisers", label: "Fundraisers" },
+  { to: "/research", label: "Research" },
+  { to: "/news", label: "News" },
 ] as const;
 
 export function SiteHeader() {
@@ -25,7 +25,7 @@ export function SiteHeader() {
             </Link>
           ))}
           <Link to="/donate" className="btn-ember !px-4 !py-2">
-            Помочь
+            Donate
           </Link>
         </nav>
       </div>

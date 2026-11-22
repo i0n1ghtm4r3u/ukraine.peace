@@ -6,8 +6,8 @@ export function FundraiserCard({ f }: { f: Fundraiser }) {
   return (
     <article className="flex flex-col border border-border bg-card p-6">
       <div className="flex items-center justify-between">
-        <span className="eyebrow">{directionInfo[f.direction].title}</span>
-        <span className="font-mono text-[0.65rem] text-muted-foreground">пример</span>
+        <span className="eyebrow">{directionInfo[f.direction].short}</span>
+        <span className="font-mono text-[0.65rem] text-muted-foreground">example</span>
       </div>
       <h3 className="mt-4 text-2xl text-bone">{f.title}</h3>
       <p className="mt-1 text-xs text-muted-foreground">{f.place}</p>
@@ -18,7 +18,7 @@ export function FundraiserCard({ f }: { f: Fundraiser }) {
         </div>
         <div className="mt-3 flex justify-between font-mono text-xs text-muted-foreground">
           <span className="text-bone">{formatEur(f.raised)}</span>
-          <span>из {formatEur(f.goal)}</span>
+          <span>of {formatEur(f.goal)}</span>
         </div>
       </div>
       <Link
@@ -26,7 +26,7 @@ export function FundraiserCard({ f }: { f: Fundraiser }) {
         search={{ direction: f.direction, fundraiser: f.id }}
         className="btn-ghost-bone mt-6"
       >
-        Поддержать
+        Support
       </Link>
     </article>
   );

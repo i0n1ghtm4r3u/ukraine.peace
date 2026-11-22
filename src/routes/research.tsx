@@ -5,10 +5,10 @@ import { research } from "@/lib/content";
 export const Route = createFileRoute("/research")({
   head: () => ({
     meta: [
-      { title: "Независимые исследования — ukraine.peace" },
-      { name: "description", content: "Независимые исследования и отчёты о гуманитарном положении пострадавших от войны." },
-      { property: "og:title", content: "Независимые исследования — ukraine.peace" },
-      { property: "og:description", content: "Доклады, обзоры и полевые наблюдения независимых авторов." },
+      { title: "Independent research — ukraine.peace" },
+      { name: "description", content: "Independent studies and reports about the lives of people hurt by the war." },
+      { property: "og:title", content: "Independent research — ukraine.peace" },
+      { property: "og:description", content: "Reports, reviews and field notes by independent authors." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
@@ -20,9 +20,9 @@ function ResearchPage() {
   return (
     <>
       <PageIntro
-        eyebrow="Исследования"
-        title="Независимые исследования"
-        text="Доклады, обзоры и полевые наблюдения, которые помогают понять, где помощь нужнее всего. Ниже — образцы, которые будут заменены реальными материалами со ссылками на первоисточники."
+        eyebrow="Research"
+        title="Independent research"
+        text="Reports, reviews and field notes. They help us see where help is needed most. The items below are examples. Real studies with links to the sources will replace them."
       />
       <section className="mx-auto max-w-7xl px-6 pb-28">
         <div className="divide-y divide-border border-y border-border">

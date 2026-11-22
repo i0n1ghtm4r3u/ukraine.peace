@@ -5,10 +5,10 @@ import { formatDate, news } from "@/lib/content";
 export const Route = createFileRoute("/news")({
   head: () => ({
     meta: [
-      { title: "Последние новости — ukraine.peace" },
-      { name: "description", content: "Новости и отчёты о доставке гуманитарной помощи: лекарства и продовольствие." },
-      { property: "og:title", content: "Последние новости — ukraine.peace" },
-      { property: "og:description", content: "Отчёты о доставке помощи и новые сборы." },
+      { title: "Latest news — ukraine.peace" },
+      { name: "description", content: "News and reports about our deliveries of medicine, food and medical help." },
+      { property: "og:title", content: "Latest news — ukraine.peace" },
+      { property: "og:description", content: "Delivery reports and new fundraisers." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
@@ -20,9 +20,9 @@ function NewsPage() {
   return (
     <>
       <PageIntro
-        eyebrow="Новости"
-        title="Последние новости"
-        text="Отчёты о доставке, новые сборы и финансовые сводки. Записи ниже — примеры, их заменят реальные публикации."
+        eyebrow="News"
+        title="Latest news"
+        text="Delivery reports, new fundraisers and money reports. The posts below are examples. Real posts will replace them."
       />
       <section className="mx-auto max-w-4xl px-6 pb-28">
         <div className="divide-y divide-border border-y border-border">

@@ -27,10 +27,10 @@ export const Route = createFileRoute("/donate")({
   },
   head: () => ({
     meta: [
-      { title: "Пожертвовать — ukraine.peace" },
-      { name: "description", content: "Пожертвуйте на лекарства или продовольствие для пострадавших от войны и беженцев — в евро или криптовалюте." },
-      { property: "og:title", content: "Пожертвовать — ukraine.peace" },
-      { property: "og:description", content: "Лекарства или продовольствие. Евро или криптовалюта." },
+      { title: "Donate — ukraine.peace" },
+      { name: "description", content: "Give money to help people hurt by the war or wounded people who took part in the fighting. Pay in euro or crypto." },
+      { property: "og:title", content: "Donate — ukraine.peace" },
+      { property: "og:description", content: "Help for people hurt by the war. Euro or crypto." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
@@ -42,7 +42,7 @@ function DonatePage() {
   const search = Route.useSearch();
   const fundraiser = fundraisers.find((f) => f.id === search.fundraiser);
   const [direction, setDirection] = useState<Direction>(
-    search.direction ?? fundraiser?.direction ?? "medicine",
+    search.direction ?? fundraiser?.direction ?? "civilians",
   );
   const [method, setMethod] = useState<PaymentMethod>("eur");
   const [amount, setAmount] = useState<number>(25);
@@ -57,22 +57,22 @@ function DonatePage() {
   return (
     <>
       <PageIntro
-        eyebrow="Пожертвование"
-        title="Ваш взнос — чья-то следующая неделя"
-        text="Выберите, на что пойдут деньги, и удобный способ оплаты. Все средства идут только на гуманитарную помощь."
+        eyebrow="Donate"
+        title="Your gift can help someone get through next week"
+        text="Choose what your money is for and how you want to pay. All money goes to medicine, food and medical care only."
       />
 
       <section className="mx-auto grid max-w-7xl gap-10 px-6 pb-28 lg:grid-cols-[1fr_380px]">
         <div className="space-y-14">
           {fundraiser && (
             <p className="border-l-2 border-ember pl-4 text-sm text-muted-foreground">
-              Сбор: <span className="text-bone">{fundraiser.title}</span>
+              Fundraiser: <span className="text-bone">{fundraiser.title}</span>
             </p>
           )}
 
           {/* Step 1 */}
           <fieldset>
-            <legend className="eyebrow">01 · На что</legend>
+            <legend className="eyebrow">01 · What for</legend>
             <div className="mt-5 grid gap-px bg-border sm:grid-cols-2">
               {DIRECTIONS.map((d) => (
                 <button
@@ -99,12 +99,12 @@ function DonatePage() {
 
           {/* Step 2 */}
           <fieldset>
-            <legend className="eyebrow">02 · Способ оплаты</legend>
+            <legend className="eyebrow">02 · How to pay</legend>
             <div className="mt-5 flex gap-px bg-border">
               {(
                 [
-                  ["eur", "Евро · карта"],
-                  ["crypto", "Криптовалюта"],
+                  ["eur", "Euro · card"],
+                  ["crypto", "Crypto"],
                 ] as const
               ).map(([m, label]) => (
                 <button
@@ -129,7 +129,7 @@ function DonatePage() {
           {/* Step 3 */}
           {method === "eur" ? (
             <fieldset>
-              <legend className="eyebrow">03 · Сумма</legend>
+              <legend className="eyebrow">03 · Amount</legend>
               <div className="mt-5 flex flex-wrap gap-2">
                 {EUR_PRESETS.map((v) => (
                   <button
@@ -154,8 +154,8 @@ function DonatePage() {
                   <span className="font-mono text-sm text-muted-foreground">€</span>
                   <input
                     inputMode="numeric"
-                    placeholder="Другая сумма"
-                    aria-label="Другая сумма в евро"
+                    placeholder="Other amount"
+                    aria-label="Other amount in euro"
                     value={custom}
                     onChange={(e) => setCustom(e.target.value.replace(/\D/g, ""))}
                     className="w-32 bg-transparent px-2 py-3 font-mono text-sm text-bone outline-none placeholder:text-muted-foreground"
@@ -165,7 +165,7 @@ function DonatePage() {
             </fieldset>
           ) : (
             <fieldset>
-              <legend className="eyebrow">03 · Кошелёк</legend>
+              <legend className="eyebrow">03 · Wallet</legend>
               <div className="mt-5 flex flex-wrap gap-2">
                 {cryptoWallets.map((w) => (
                   <button
@@ -190,7 +190,7 @@ function DonatePage() {
               {wallet && (
                 <div className="mt-6 border border-border bg-card p-6">
                   <p className="eyebrow">
-                    Адрес {wallet.name} · сеть {wallet.network}
+                    {wallet.name} address · {wallet.network} network
                   </p>
                   <p className="mt-3 break-all font-mono text-sm text-bone">{wallet.address}</p>
                   <button
@@ -201,12 +201,12 @@ function DonatePage() {
                       setCopied(true);
                     }}
                   >
-                    {copied ? "Скопировано" : "Скопировать адрес"}
+                    {copied ? "Copied" : "Copy address"}
                   </button>
                   <p className="mt-5 text-xs leading-relaxed text-muted-foreground">
-                    Отправляйте только {wallet.name} в сети {wallet.network}. Перевод в другой сети
-                    может быть потерян. В комментарии к переводу можно указать направление:{" "}
-                    {directionInfo[direction].title.toLowerCase()}.
+                    Send only {wallet.name} on the {wallet.network} network. If you use another network,
+                    the money can be lost. In the payment note you can write what it is for:{" "}
+                    “{directionInfo[direction].short}”.
                   </p>
                 </div>
               )}
@@ -216,19 +216,19 @@ function DonatePage() {
 
         {/* Summary */}
         <aside className="h-fit border border-border bg-card p-8 lg:sticky lg:top-8">
-          <p className="eyebrow">Итог</p>
+          <p className="eyebrow">Summary</p>
           <dl className="mt-6 space-y-4 text-sm">
             <div className="flex justify-between gap-4">
-              <dt className="text-muted-foreground">Направление</dt>
+              <dt className="text-muted-foreground">What for</dt>
               <dd className="text-bone">{directionInfo[direction].title}</dd>
             </div>
             <div className="flex justify-between gap-4">
-              <dt className="text-muted-foreground">Способ</dt>
-              <dd className="text-bone">{method === "eur" ? "Евро · карта" : `Крипто · ${wallet?.name ?? ""}`}</dd>
+              <dt className="text-muted-foreground">Payment</dt>
+              <dd className="text-bone">{method === "eur" ? "Euro · card" : `Crypto · ${wallet?.name ?? ""}`}</dd>
             </div>
             {method === "eur" && (
               <div className="flex justify-between gap-4 border-t border-border pt-4">
-                <dt className="text-muted-foreground">Сумма</dt>
+                <dt className="text-muted-foreground">Amount</dt>
                 <dd className="font-display text-3xl text-bone">
                   {finalAmount > 0 ? formatEur(finalAmount) : "—"}
                 </dd>
@@ -239,8 +239,8 @@ function DonatePage() {
           {method === "eur" ? (
             submitted ? (
               <p className="mt-8 border-l-2 border-ember pl-4 text-sm leading-relaxed text-muted-foreground">
-                Спасибо. Оплата картой ещё не подключена — деньги не списаны. Скоро здесь
-                появится настоящая оплата.
+                Thank you. Card payment is not ready yet, so no money was taken. Real payment
+                will be here soon.
               </p>
             ) : (
               <button
@@ -249,12 +249,12 @@ function DonatePage() {
                 onClick={() => setSubmitted(true)}
                 className="btn-ember mt-8 w-full disabled:opacity-40"
               >
-                Пожертвовать {finalAmount > 0 ? formatEur(finalAmount) : ""}
+                Donate {finalAmount > 0 ? formatEur(finalAmount) : ""}
               </button>
             )
           ) : (
             <p className="mt-8 text-sm leading-relaxed text-muted-foreground">
-              Переведите любую сумму на адрес слева. Поступления отражаются в ежемесячном отчёте.
+              Send any amount to the address on the left. We show all money we get in our monthly report.
             </p>
           )}
         </aside>

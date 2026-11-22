@@ -19,8 +19,8 @@ export type Photo = {
 export const photos: Photo[] = [
   {
     src: kholodnohirska.url,
-    place: "Харьков",
-    caption: "Жилой дом на улице Холодногорской, 3, после авиаудара. Март 2022.",
+    place: "Kharkiv",
+    caption: "An apartment building on Kholodnohirska Street after an air strike. March 2022.",
     author: "Kharkivian",
     license: "CC BY-SA 4.0",
     source:
@@ -28,8 +28,8 @@ export const photos: Photo[] = [
   },
   {
     src: krasnodarska.url,
-    place: "Харьков",
-    caption: "Многоэтажный дом на улице Краснодарской, 177, после обстрела.",
+    place: "Kharkiv",
+    caption: "A tall apartment building on Krasnodarska Street after shelling.",
     author: "Kharkivian",
     license: "CC BY-SA 4.0",
     source:
@@ -37,8 +37,8 @@ export const photos: Photo[] = [
   },
   {
     src: chernihiv.url,
-    place: "Чернигов",
-    caption: "Руины здания кинотеатра имени Щорса.",
+    place: "Chernihiv",
+    caption: "What is left of the Shchors cinema.",
     author: "Dimma837",
     license: "CC0",
     source:
@@ -46,8 +46,8 @@ export const photos: Photo[] = [
   },
   {
     src: irpin.url,
-    place: "Ирпень",
-    caption: "Корпус университета государственной налоговой службы.",
+    place: "Irpin",
+    caption: "A building of the State Tax University.",
     author: "Kisnaak",
     license: "CC BY-SA 4.0",
     source:
@@ -55,8 +55,8 @@ export const photos: Photo[] = [
   },
   {
     src: buchmy.url,
-    place: "Харьков",
-    caption: "Жилой дом на улице Бучмы, 40а.",
+    place: "Kharkiv",
+    caption: "An apartment building on Buchmy Street.",
     author: "Kharkivian",
     license: "CC BY-SA 4.0",
     source:
@@ -64,8 +64,8 @@ export const photos: Photo[] = [
   },
   {
     src: kyivSchool.url,
-    place: "Киевская область",
-    caption: "Школьный двор после удара. Осколки стекла и обломки на земле.",
+    place: "Kyiv region",
+    caption: "A school yard after a strike. Broken glass and pieces of the building on the ground.",
     author: "Kisnaak",
     license: "CC BY-SA 4.0",
     source:
@@ -78,20 +78,21 @@ export const heroShareImage =
   "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a1/Destroyed_apartment_building_3_Kholodnohirska_Street%2C_Kharkiv_after_Russian_airstrike_by_Kharkivian_%2803.2022%29_01.jpg/1280px-Destroyed_apartment_building_3_Kholodnohirska_Street%2C_Kharkiv_after_Russian_airstrike_by_Kharkivian_%2803.2022%29_01.jpg";
 
 /* ---------- Donation directions: humanitarian only ---------- */
+// "fighters" covers medical care and recovery for wounded people only — never weapons or gear.
 
-export const DIRECTIONS = ["medicine", "food"] as const;
+export const DIRECTIONS = ["civilians", "fighters"] as const;
 export type Direction = (typeof DIRECTIONS)[number];
 
 export const directionInfo: Record<Direction, { title: string; short: string; text: string }> = {
-  medicine: {
-    title: "Лекарства",
-    short: "Препараты и медпомощь",
-    text: "Инсулин, антибиотики, обезболивающие, перевязочные материалы и аптечки для больниц, пунктов помощи и семей, оставшихся без доступа к аптекам.",
+  civilians: {
+    title: "Help for people hurt by the war",
+    short: "Medicine and food",
+    text: "Medicine, first aid kits, food boxes and drinking water. For families who lost their homes, for people who stayed and for refugees.",
   },
-  food: {
-    title: "Продовольствие",
-    short: "Еда и вода",
-    text: "Продуктовые наборы, питьевая вода и детское питание для пострадавших, переселенцев и беженцев.",
+  fighters: {
+    title: "Help for people who took part in the fighting",
+    short: "Medical care and recovery",
+    text: "Treatment for the wounded, rehabilitation, prosthetic limbs and help with stress and trauma. Only medical help — no weapons or equipment.",
   },
 };
 
@@ -112,9 +113,9 @@ export type CryptoWallet = { id: string; name: string; network: string; address:
 
 // Placeholder addresses — replace with the organisation's real wallets before launch.
 export const cryptoWallets: CryptoWallet[] = [
-  { id: "usdt", name: "USDT", network: "TRC-20", address: "АДРЕС КОШЕЛЬКА USDT БУДЕТ ЗДЕСЬ" },
-  { id: "btc", name: "Bitcoin", network: "BTC", address: "АДРЕС КОШЕЛЬКА BTC БУДЕТ ЗДЕСЬ" },
-  { id: "eth", name: "Ethereum", network: "ERC-20", address: "АДРЕС КОШЕЛЬКА ETH БУДЕТ ЗДЕСЬ" },
+  { id: "usdt", name: "USDT", network: "TRC-20", address: "USDT WALLET ADDRESS WILL BE HERE" },
+  { id: "btc", name: "Bitcoin", network: "BTC", address: "BTC WALLET ADDRESS WILL BE HERE" },
+  { id: "eth", name: "Ethereum", network: "ERC-20", address: "ETH WALLET ADDRESS WILL BE HERE" },
 ];
 
 /* ---------- Sample content (clearly marked as examples) ---------- */
@@ -132,39 +133,39 @@ export type Fundraiser = {
 export const fundraisers: Fundraiser[] = [
   {
     id: "insulin-winter",
-    direction: "medicine",
-    title: "Инсулин на зиму",
-    place: "Прифронтовые районы",
-    text: "Запас инсулина и тест-полосок на три зимних месяца для людей с диабетом, которые не могут выехать.",
+    direction: "civilians",
+    title: "Insulin for the winter",
+    place: "Areas near the front line",
+    text: "Insulin and test strips for three winter months. For people with diabetes who cannot leave.",
     raised: 6420,
     goal: 15000,
   },
   {
     id: "food-kits-refugees",
-    direction: "food",
-    title: "Продуктовые наборы для переселенцев",
-    place: "Пункты временного размещения",
-    text: "Наборы на две недели для семей, потерявших дом: крупы, консервы, масло, детское питание.",
+    direction: "civilians",
+    title: "Food boxes for families who lost their homes",
+    place: "Temporary shelters",
+    text: "Food for two weeks: rice and grains, tinned food, oil, baby food.",
     raised: 9870,
     goal: 12000,
   },
   {
     id: "first-aid-villages",
-    direction: "medicine",
-    title: "Аптечки для отрезанных сёл",
-    place: "Сёла без аптек",
-    text: "Базовые аптечки и перевязочные материалы для сёл, куда больше не ходит транспорт.",
+    direction: "civilians",
+    title: "First aid kits for cut-off villages",
+    place: "Villages with no pharmacy",
+    text: "Simple first aid kits and bandages for villages where buses do not go any more.",
     raised: 2150,
     goal: 8000,
   },
   {
-    id: "water-shelters",
-    direction: "food",
-    title: "Питьевая вода для укрытий",
-    place: "Города без водоснабжения",
-    text: "Бутилированная вода и фильтры для подвалов и укрытий, где люди живут неделями.",
-    raised: 3300,
-    goal: 6000,
+    id: "prosthetics-rehab",
+    direction: "fighters",
+    title: "Prosthetic limbs and rehabilitation",
+    place: "Rehabilitation centres",
+    text: "Prosthetic legs and arms and months of physiotherapy for people who were badly wounded.",
+    raised: 4100,
+    goal: 20000,
   },
 ];
 
@@ -174,20 +175,20 @@ export const news: NewsItem[] = [
   {
     id: "n1",
     date: "2026-11-20",
-    title: "Пример: отчёт о передаче лекарств",
-    text: "Здесь будет реальный отчёт: что закуплено, куда доставлено, с чеками и фотографиями.",
+    title: "Example: report on a medicine delivery",
+    text: "A real report will be here: what we bought, where we took it, with receipts and photos.",
   },
   {
     id: "n2",
     date: "2026-11-14",
-    title: "Пример: новый сбор на продуктовые наборы",
-    text: "Здесь будет новость о запуске сбора — для кого, на какой срок и какая сумма нужна.",
+    title: "Example: new fundraiser for food boxes",
+    text: "News about a new fundraiser will be here: who it is for, how long it runs and how much money we need.",
   },
   {
     id: "n3",
     date: "2026-11-05",
-    title: "Пример: ежемесячный финансовый отчёт",
-    text: "Здесь будет сводка поступлений и расходов за месяц со ссылкой на документы.",
+    title: "Example: monthly money report",
+    text: "A short report on money in and money out this month will be here, with links to documents.",
   },
 ];
 
@@ -202,29 +203,29 @@ export type Research = {
 export const research: Research[] = [
   {
     id: "r1",
-    kind: "Образец · Доклад",
-    title: "Доступ к лекарствам у вынужденных переселенцев",
-    authors: "Автор и организация будут указаны",
-    text: "Место для реального независимого исследования: методика, выводы и ссылка на полный текст.",
+    kind: "Example · Report",
+    title: "Can people who had to leave their homes get medicine?",
+    authors: "Author and organisation will be added",
+    text: "A real independent study will be here: how it was done, what it found and a link to the full text.",
   },
   {
     id: "r2",
-    kind: "Образец · Обзор",
-    title: "Продовольственная безопасность в пострадавших районах",
-    authors: "Автор и организация будут указаны",
-    text: "Место для реального обзора: источники данных, ключевые цифры и ссылка на первоисточник.",
+    kind: "Example · Review",
+    title: "Is there enough food in the areas hit by the war?",
+    authors: "Author and organisation will be added",
+    text: "A real review will be here: where the data comes from, the main numbers and a link to the source.",
   },
   {
     id: "r3",
-    kind: "Образец · Полевое наблюдение",
-    title: "Жизнь в укрытиях: условия и потребности",
-    authors: "Автор и организация будут указаны",
-    text: "Место для реального полевого отчёта независимых наблюдателей или журналистов.",
+    kind: "Example · Field notes",
+    title: "Life in shelters: what people have and what they need",
+    authors: "Author and organisation will be added",
+    text: "A real report from independent observers or journalists will be here.",
   },
 ];
 
 export function formatEur(value: number) {
-  return new Intl.NumberFormat("ru-RU", {
+  return new Intl.NumberFormat("en-GB", {
     style: "currency",
     currency: "EUR",
     maximumFractionDigits: 0,
@@ -232,7 +233,7 @@ export function formatEur(value: number) {
 }
 
 export function formatDate(iso: string) {
-  return new Intl.DateTimeFormat("ru-RU", { day: "numeric", month: "long", year: "numeric" }).format(
+  return new Intl.DateTimeFormat("en-GB", { day: "numeric", month: "long", year: "numeric" }).format(
     new Date(iso),
   );
 }
