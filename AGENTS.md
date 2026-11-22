@@ -28,3 +28,9 @@ use the editor.
   own key and store it in Secrets.
 - **Secrets.** Lovable manages them. Do not put secret values in the repo.
 <!-- LOVABLE:END -->
+
+## Project rules
+- All site content (photos with credits, directions, fundraisers, news, research, wallets) lives in `src/lib/content.ts`; pages only render it — one place to swap sample content for real content.
+- Donation directions are a closed list (`DIRECTIONS`) validated by `parseDirection`; the donate page's search params never accept other values — keeps the scope humanitarian-only.
+- Photos are real, freely licensed images served via Lovable Assets pointers in `src/assets/photos/`, each with author, license and source link shown on the page — license compliance.
+- Visual style is defined only in `src/styles.css` (tokens + `@utility` classes like `photo-grade`, `btn-ember`); components use those, never raw colors.
