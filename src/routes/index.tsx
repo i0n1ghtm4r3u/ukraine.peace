@@ -1,13 +1,13 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { PhotoFigure } from "@/components/photo-figure";
 import { FundraiserCard } from "@/components/fundraiser-card";
+import { HumanitarianOverview } from "@/components/humanitarian-overview";
+import { MediaNews } from "@/components/media-news";
 import {
   DIRECTIONS,
   directionInfo,
-  formatDate,
   fundraisers,
   heroShareImage,
-  news,
   photos,
 } from "@/lib/content";
 
@@ -110,13 +110,18 @@ function Index() {
         </div>
       </section>
 
+      {/* Humanitarian overview: compact, collapsed by default */}
+      <HumanitarianOverview />
+
       {/* Directions */}
       <section className="border-y border-border bg-card">
         <div className="mx-auto max-w-7xl px-6 py-28">
           <p className="eyebrow">Where the money goes</p>
-          <h2 className="mt-4 max-w-2xl text-4xl text-bone md:text-5xl">
-            You choose what your money is for
-          </h2>
+          <h2 className="mt-4 max-w-2xl text-4xl text-bone md:text-5xl">Ways to Help</h2>
+          <p className="mt-4 max-w-xl text-muted-foreground">
+            Verified ways to support civilians affected by the war. Choose what your money is
+            used for.
+          </p>
           <div className="mt-14 grid gap-px bg-border md:grid-cols-2">
             {DIRECTIONS.map((d) => (
               <Link
@@ -154,31 +159,8 @@ function Index() {
         </div>
       </section>
 
-      {/* News */}
-      <section className="border-t border-border">
-        <div className="mx-auto max-w-7xl px-6 py-28">
-          <div className="flex flex-wrap items-end justify-between gap-6">
-            <div>
-              <p className="eyebrow">Latest news</p>
-              <h2 className="mt-4 text-4xl text-bone md:text-5xl">From the ground</h2>
-            </div>
-            <Link to="/news" className="eyebrow hover:text-bone">
-              All news →
-            </Link>
-          </div>
-          <div className="mt-12 divide-y divide-border border-y border-border">
-            {news.map((n) => (
-              <article key={n.id} className="grid gap-2 py-7 md:grid-cols-[180px_1fr]">
-                <time className="font-mono text-xs text-muted-foreground">{formatDate(n.date)}</time>
-                <div>
-                  <h3 className="text-xl text-bone">{n.title}</h3>
-                  <p className="mt-2 text-sm text-muted-foreground">{n.text}</p>
-                </div>
-              </article>
-            ))}
-          </div>
-        </div>
-      </section>
+      {/* Independent media news, aggregated live from official feeds */}
+      <MediaNews />
     </>
   );
 }
