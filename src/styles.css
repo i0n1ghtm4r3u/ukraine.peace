@@ -199,7 +199,7 @@
     background-color 0.4s ease,
     transform 0.4s ease;
   &:hover {
-    background-color: oklch(0.44 0.11 32);
+    background-color: color-mix(in oklab, var(--ember) 85%, black);
   }
 }
 
@@ -219,6 +219,36 @@
   &:hover {
     border-color: var(--bone);
   }
+}
+
+/*
+ * Hope theme: a lighter, warmer palette for the fundraiser pages.
+ * Overrides the same tokens, so every utility inside picks it up.
+ */
+.theme-hope {
+  --background: oklch(0.255 0.012 70);
+  --foreground: oklch(0.93 0.012 85);
+  --card: oklch(0.3 0.014 72);
+  --card-foreground: oklch(0.93 0.012 85);
+  --muted: oklch(0.32 0.012 72);
+  --muted-foreground: oklch(0.76 0.018 80);
+  --accent: oklch(0.35 0.02 75);
+  --border: oklch(0.4 0.016 75);
+  --ash: oklch(0.58 0.02 78);
+  --bone: oklch(0.97 0.012 88);
+  --ember: oklch(0.78 0.12 78);
+  --primary: oklch(0.78 0.12 78);
+  --primary-foreground: oklch(0.2 0.02 60);
+  --ring: oklch(0.78 0.12 78);
+  --gradient-dawn:
+    radial-gradient(ellipse 80% 60% at 50% 0%, oklch(0.78 0.12 78 / 0.22), transparent 70%),
+    radial-gradient(ellipse 60% 40% at 85% 10%, oklch(0.85 0.08 60 / 0.12), transparent 70%);
+  background-color: var(--background);
+  color: var(--foreground);
+}
+
+@utility dawn {
+  background-image: var(--gradient-dawn);
 }
 
 @keyframes slow-fade {

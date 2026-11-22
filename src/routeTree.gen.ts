@@ -11,9 +11,10 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as DonateRouteImport } from './routes/donate'
-import { Route as FundraisersRouteImport } from './routes/fundraisers'
 import { Route as NewsRouteImport } from './routes/news'
 import { Route as ResearchRouteImport } from './routes/research'
+import { Route as FundraisersIndexRouteImport } from './routes/fundraisers.index'
+import { Route as FundraisersCategoryRouteImport } from './routes/fundraisers.$category'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -23,11 +24,6 @@ const IndexRoute = IndexRouteImport.update({
 const DonateRoute = DonateRouteImport.update({
   id: '/donate',
   path: '/donate',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const FundraisersRoute = FundraisersRouteImport.update({
-  id: '/fundraisers',
-  path: '/fundraisers',
   getParentRoute: () => rootRouteImport,
 } as any)
 const NewsRoute = NewsRouteImport.update({
@@ -40,43 +36,76 @@ const ResearchRoute = ResearchRouteImport.update({
   path: '/research',
   getParentRoute: () => rootRouteImport,
 } as any)
+const FundraisersIndexRoute = FundraisersIndexRouteImport.update({
+  id: '/fundraisers/',
+  path: '/fundraisers/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FundraisersCategoryRoute = FundraisersCategoryRouteImport.update({
+  id: '/fundraisers/$category',
+  path: '/fundraisers/$category',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/donate': typeof DonateRoute
-  '/fundraisers': typeof FundraisersRoute
   '/news': typeof NewsRoute
   '/research': typeof ResearchRoute
+  '/fundraisers/$category': typeof FundraisersCategoryRoute
+  '/fundraisers/': typeof FundraisersIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/donate': typeof DonateRoute
-  '/fundraisers': typeof FundraisersRoute
   '/news': typeof NewsRoute
   '/research': typeof ResearchRoute
+  '/fundraisers/$category': typeof FundraisersCategoryRoute
+  '/fundraisers': typeof FundraisersIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/donate': typeof DonateRoute
-  '/fundraisers': typeof FundraisersRoute
   '/news': typeof NewsRoute
   '/research': typeof ResearchRoute
+  '/fundraisers/$category': typeof FundraisersCategoryRoute
+  '/fundraisers/': typeof FundraisersIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/donate' | '/fundraisers' | '/news' | '/research'
+  fullPaths:
+    | '/'
+    | '/donate'
+    | '/news'
+    | '/research'
+    | '/fundraisers/$category'
+    | '/fundraisers/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/donate' | '/fundraisers' | '/news' | '/research'
-  id: '__root__' | '/' | '/donate' | '/fundraisers' | '/news' | '/research'
+  to:
+    | '/'
+    | '/donate'
+    | '/news'
+    | '/research'
+    | '/fundraisers/$category'
+    | '/fundraisers'
+  id:
+    | '__root__'
+    | '/'
+    | '/donate'
+    | '/news'
+    | '/research'
+    | '/fundraisers/$category'
+    | '/fundraisers/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   DonateRoute: typeof DonateRoute
-  FundraisersRoute: typeof FundraisersRoute
   NewsRoute: typeof NewsRoute
   ResearchRoute: typeof ResearchRoute
+  FundraisersCategoryRoute: typeof FundraisersCategoryRoute
+  FundraisersIndexRoute: typeof FundraisersIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -95,13 +124,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DonateRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/fundraisers': {
-      id: '/fundraisers'
-      path: '/fundraisers'
-      fullPath: '/fundraisers'
-      preLoaderRoute: typeof FundraisersRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/news': {
       id: '/news'
       path: '/news'
@@ -116,15 +138,30 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ResearchRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/fundraisers/': {
+      id: '/fundraisers/'
+      path: '/fundraisers'
+      fullPath: '/fundraisers/'
+      preLoaderRoute: typeof FundraisersIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/fundraisers/$category': {
+      id: '/fundraisers/$category'
+      path: '/fundraisers/$category'
+      fullPath: '/fundraisers/$category'
+      preLoaderRoute: typeof FundraisersCategoryRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   DonateRoute: DonateRoute,
-  FundraisersRoute: FundraisersRoute,
   NewsRoute: NewsRoute,
   ResearchRoute: ResearchRoute,
+  FundraisersCategoryRoute: FundraisersCategoryRoute,
+  FundraisersIndexRoute: FundraisersIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

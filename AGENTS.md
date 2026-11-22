@@ -34,3 +34,4 @@ use the editor.
 - Donation directions are a closed list (`DIRECTIONS`) validated by `parseDirection`; the donate page's search params never accept other values — keeps the scope humanitarian-only.
 - Photos are real, freely licensed images served via Lovable Assets pointers in `src/assets/photos/`, each with author, license and source link shown on the page — license compliance.
 - Visual style is defined only in `src/styles.css` (tokens + `@utility` classes like `photo-grade`, `btn-ember`); components use those, never raw colors.
+- Fundraiser pages (`/fundraisers`, `/fundraisers/$category`) wrap content in `.theme-hope`, a scoped token override in `src/styles.css` — lighter, warmer mood without touching the rest of the site.

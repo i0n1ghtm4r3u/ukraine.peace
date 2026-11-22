@@ -96,6 +96,20 @@ export const directionInfo: Record<Direction, { title: string; short: string; te
   },
 };
 
+/** Words for the fundraiser category pages: lighter, about hope. */
+export const directionHope: Record<Direction, { eyebrow: string; title: string; text: string }> = {
+  civilians: {
+    eyebrow: "Help for people hurt by the war",
+    title: "Life starts again with small things",
+    text: "A warm meal. Clean water. The right medicine at the right time. These small things help people stay and start again. Choose a fundraiser below.",
+  },
+  fighters: {
+    eyebrow: "Help for people who took part in the fighting",
+    title: "Coming back is a long road. Nobody should walk it alone",
+    text: "Good treatment, a new prosthetic limb, someone to talk to. Your help gives people a way back to normal life. Only medical help, no weapons.",
+  },
+};
+
 export function parseDirection(value: unknown): Direction | undefined {
   return typeof value === "string" && (DIRECTIONS as readonly string[]).includes(value)
     ? (value as Direction)
@@ -166,6 +180,24 @@ export const fundraisers: Fundraiser[] = [
     text: "Prosthetic legs and arms and months of physiotherapy for people who were badly wounded.",
     raised: 4100,
     goal: 20000,
+  },
+  {
+    id: "field-surgery-kits",
+    direction: "fighters",
+    title: "Medical kits for field hospitals",
+    place: "Field hospitals",
+    text: "Bandages, tourniquets and medicine that doctors use in the first hours after an injury.",
+    raised: 7300,
+    goal: 10000,
+  },
+  {
+    id: "trauma-support",
+    direction: "fighters",
+    title: "Help with trauma and stress",
+    place: "Online and in person",
+    text: "Sessions with psychologists for people who came back from the fighting and for their families.",
+    raised: 1850,
+    goal: 6000,
   },
 ];
 
